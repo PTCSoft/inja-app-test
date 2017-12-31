@@ -53,7 +53,7 @@ export default class RenderLayout extends Component {
         return list;
     }
     render() {
-        console.log("render RenderLayout",this.state.layoutData);
+        console.log("render RenderLayout", this.state.layoutData);
         var data = this.state.layoutData;
         var listViews = [];
         var self = this;
