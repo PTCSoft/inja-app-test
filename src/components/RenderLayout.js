@@ -10,11 +10,14 @@ import {
     Platform,
     StyleSheet,
     Text,
-    View
+    View,
+    Dimensions
 } from 'react-native';
 import Slide from './Slide';
 import Product from './Product';
 import One from './One';
+
+let ScreenHeight = Dimensions.get("window").height;
 
 export default class RenderLayout extends Component {
     constructor(props) { 
@@ -29,7 +32,7 @@ export default class RenderLayout extends Component {
     componentWillReceiveProps(nextProps) {
         console.log(nextProps, "nextProps");
         if(nextProps.layoutData !== this.state.layoutData) {
-          this.setState({ layoutData: JSON.parse(nextProps.layoutData) });
+          this.setState({ layoutData: nextProps.layoutData });
         }
     }
     
@@ -73,7 +76,7 @@ export default class RenderLayout extends Component {
             console.log(listViews);
         }
         return (
-          <View >
+          <View style={styles.slide} >
             {listViews}
           </View>
         );
@@ -89,5 +92,13 @@ export default class RenderLayout extends Component {
                 break;
         }
     }
-
 }
+
+const styles = StyleSheet.create({
+    slide: {
+        flex: 1,
+        // flexDirection: 'column',
+        // minHeight: 800,
+        backgroundColor: '#ddccdd',
+    },
+});
