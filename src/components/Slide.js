@@ -11,7 +11,9 @@ import {
     StyleSheet,
     Text,
     Image,
-    View
+    TouchableOpacity,
+    View,
+    Linking
 } from 'react-native';
 // import Slideshow from 'react-native-slideshow';
 // import ImageSlider from 'react-native-image-slider';
@@ -49,6 +51,14 @@ export default class Slide extends Component {
 
   _slideTapped(item){
     console.log(item, "item");
+    var url = "http://" + item.link;
+    Linking.canOpenURL(url).then(supported => {
+      if (supported) {
+        Linking.openURL(url);
+      } else {
+        console.log("Don't know how to open URI: " + this.props.url);
+      }
+    });
   }
 
 
@@ -61,7 +71,7 @@ export default class Slide extends Component {
       items.forEach(function (item) {
         var imageURI = serverURL + item.imagePath + "/" + item.imageFileName;
         console.log(imageURI);
-        slides.push(<View style={styles.slide1} key={item.priority} onPress={() => { console.log('You tapped the button!'); self._slideTapped(item); }}><Image style={styles.image} source={{ uri: imageURI }} /><Text style={styles.text}></Text></View>);
+        slides.push(<View style={styles.slide1} key={item.priority} ><TouchableOpacity onPress={() => { console.log('You tapped the button!'); self._slideTapped(item); }}><Image style={styles.image} source={{ uri: imageURI }} /></TouchableOpacity></View>);
       });
     }
     console.log(slides);
