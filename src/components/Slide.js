@@ -83,8 +83,8 @@ var styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'cover',
     alignItems: 'stretch',
-    // minWidth: 400,
-    // minHeight: 300
+    minWidth: 400,
+    minHeight: 300
   },
   slide1: {
     flex: 1,
