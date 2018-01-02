@@ -99,6 +99,6 @@ const styles = StyleSheet.create({
         flex: 1,
         // flexDirection: 'column',
         // minHeight: 800,
-        backgroundColor: '#ddccdd',
+        backgroundColor: '#efefef',
     },
 });

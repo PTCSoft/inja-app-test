@@ -54,10 +54,12 @@ export default class App extends Component < {} > {
   render() {
     console.log("render", this.state.layoutData);
     return (
-          <View style={styles.container}>
-            <RenderLayout 
-                layoutData = {this.state.layoutData} />
-          </View>
+        <View style={styles.container}>
+            <ScrollView style={{flex:1, backgroundColor:'white'}}>
+                <RenderLayout 
+                    layoutData = {this.state.layoutData} />
+            </ScrollView>
+        </View>
     );
   }
 }
@@ -66,7 +68,7 @@ const styles = StyleSheet.create({
     container: {
         // justifyContent: 'center',
         // alignItems: 'center',
-        backgroundColor: '#ccccdd',
+        backgroundColor: '#fefefe',
         flex: 1,
         // paddingTop: 10,
         // position: 'absolute',
