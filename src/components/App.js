@@ -47,7 +47,7 @@ export default class App extends Component < {} > {
         }).then(function(response, responseText) {
             successCallBack(JSON.parse(response._bodyText).data);
             var dt2 = Date.now();
-            // console.log((dt2-dt1)/1000, " s get layout",ScreenHeight,ScreenWidth);
+            console.log((dt2-dt1)/1000, " s get layout",ScreenHeight,ScreenWidth);
             // console.log(response, JSON.parse(response._bodyText), JSON.parse(response._bodyText).data);
         });
     }

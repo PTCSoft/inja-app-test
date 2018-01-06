@@ -39,7 +39,7 @@ export default class Product extends Component {
     }).then(function(response, responseText) {
         successCallBack(JSON.parse(response._bodyText).data);
         var dt2 = Date.now();
-        // console.log((dt2-dt1)/1000, " s get Product");
+        console.log((dt2-dt1)/1000, " s get Product");
         // console.log(response, JSON.parse(response._bodyText), JSON.parse(response._bodyText).data);
     });
   }
