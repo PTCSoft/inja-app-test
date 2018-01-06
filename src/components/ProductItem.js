@@ -24,14 +24,14 @@ export default class ProductItem extends Component {
   }
 
   _itemSelected(item){
-    console.log(item, "_itemSelected");
+    // console.log(item, "_itemSelected");
   }
 
   render() {
-    console.log("ProductItem",this.props.dataItem);
+    // console.log("ProductItem",this.props.dataItem);
     var item = this.props.dataItem;
     var imageURI = serverURL + item.imagePath + "/" + item.imageFileName;
-    console.log(imageURI);
+    // console.log(imageURI);
     var price = item.price + " ریال";
     return (
       <TouchableOpacity onPress={() => { this._itemSelected(item); }}>

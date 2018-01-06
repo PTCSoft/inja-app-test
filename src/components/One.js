@@ -23,7 +23,7 @@ export default class One extends Component {
   }
 
   render() {
-    console.log(this.props, "oNe Props");
+    // console.log(this.props, "oNe Props");
     var data = this.props.items[0];
     var imageURI = serverURL + data.imagePath + "/" + data.imageFileName;
     return (

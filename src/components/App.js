@@ -6,26 +6,33 @@
 
 import React, { Component } from 'react';
 import {
+    ActivityIndicator,
     AsyncStorage,
+    Dimensions,
     Platform,
     StyleSheet,
     Text,
     View,
     ScrollView
 } from 'react-native';
+import Spinner from 'react-native-loading-spinner-overlay';
 import RenderLayout from './RenderLayout';
 
-
 let Storage_Key = "@Apps:key";
-
+let ScreenHeight = Dimensions.get("window").height;
+let ScreenWidth = Dimensions.get("window").width;
 export default class App extends Component < {} > {
     constructor(props) {
       super(props);
     
-      this.state = {layoutData: null};
+      this.state = {
+      	layoutData: null,
+      	isLoading: true
+      };
     }
 
     getLayoutData(successCallBack, failureCallBack){
+        var dt1 = Date.now();
         var api = 'https://api.ptcvdep.net/v1/lava/advertisement/home';
         fetch(api, {
             method: 'GET',
@@ -39,22 +46,25 @@ export default class App extends Component < {} > {
 
         }).then(function(response, responseText) {
             successCallBack(JSON.parse(response._bodyText).data);
-            console.log(response, JSON.parse(response._bodyText), JSON.parse(response._bodyText).data);
+            var dt2 = Date.now();
+            // console.log((dt2-dt1)/1000, " s get layout",ScreenHeight,ScreenWidth);
+            // console.log(response, JSON.parse(response._bodyText), JSON.parse(response._bodyText).data);
         });
     }
 
     componentWillMount() {
-        console.log("componentWillMount");
+        // console.log("componentWillMount");
         this.getLayoutData(function(data){
-            console.log(data, "data");
-            this.setState({layoutData: data});
+            // console.log(data, "data");
+            this.setState({layoutData: data, isLoading: false});
         }.bind(this));
 
     }
   render() {
-    console.log("render", this.state.layoutData);
+    // console.log("render", this.state.layoutData);
     return (
         <View style={styles.container}>
+           	<Spinner visible={this.state.isLoading} textContent={"Loading..."} textStyle={{color: '#fefefe'}} />
             <ScrollView style={{flex:1, backgroundColor:'white'}}>
                 <RenderLayout 
                     layoutData = {this.state.layoutData} />
@@ -68,7 +78,7 @@ const styles = StyleSheet.create({
     container: {
         // justifyContent: 'center',
         // alignItems: 'center',
-        backgroundColor: '#fefefe',
+        backgroundColor: '#efefef',
         flex: 1,
         // paddingTop: 10,
         // position: 'absolute',

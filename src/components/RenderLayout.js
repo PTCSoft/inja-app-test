@@ -26,11 +26,11 @@ export default class RenderLayout extends Component {
       this.state = {layoutData: null};
     }
     componentDidMount(){
-        console.log(this.props.layoutData,"layoutData");
+        // console.log(this.props.layoutData,"layoutData");
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps, "nextProps");
+        // console.log(nextProps, "nextProps");
         if(nextProps.layoutData !== this.state.layoutData) {
           this.setState({ layoutData: nextProps.layoutData });
         }
@@ -53,7 +53,8 @@ export default class RenderLayout extends Component {
         return list;
     }
     render() {
-        console.log("render RenderLayout", this.state.layoutData);
+        // console.log("render RenderLayout", this.state.layoutData);
+        var dt1 = Date.now();
         var data = this.state.layoutData;
         var listViews = [];
         var self = this;
@@ -65,7 +66,7 @@ export default class RenderLayout extends Component {
             //     listViews[i] = "<"+data[i].layoutType +" title="+ data[i].title+ " items="+data[i].items +" />";
             // }
             data.forEach(function (item) {
-                console.log(item);
+                // console.log(item);
                 listViews.push(self._chooseComponent(item));
                 // list.push( <Slide title={item.title} items={item.items} />);
                 // listViews.push(<Slide title={item.title} items={item.items} key={item.position} />);
@@ -73,8 +74,10 @@ export default class RenderLayout extends Component {
                 // console.log(item.layoutType, type);
                 // listViews.push(<{type} title={item.title} items={item.items} key={item.position} />);
             });
-            console.log(listViews);
+            // console.log(listViews);
         }
+        var dt2 = Date.now();
+        // console.log((dt2-dt1)/1000, " s render layout");
         return (
           <View style={styles.slide} >
             {listViews}

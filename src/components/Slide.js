@@ -52,32 +52,32 @@ export default class Slide extends Component {
   // }
 
   _slideTapped(item){
-    console.log(item, "item");
+    // console.log(item, "item");
     var url = "http://" + item.link;
     Linking.canOpenURL(url).then(supported => {
       if (supported) {
         // this.popupDialog.show();
         Linking.openURL(url);
       } else {
-        console.log("Don't know how to open URI: " + this.props.url);
+        // console.log("Don't know how to open URI: " + this.props.url);
       }
     });
   }
 
 
   render(){
-    console.log(this.props,"Slide props");
+    // console.log(this.props,"Slide props");
     var items = this.props.items;
     var slides = [];
     var self = this;
     if(items){
       items.forEach(function (item) {
         var imageURI = serverURL + item.imagePath + "/" + item.imageFileName;
-        console.log(imageURI);
+        // console.log(imageURI);
         slides.push(<View style={styles.slide1} key={item.priority} ><TouchableOpacity onPress={() => { self._slideTapped(item); }}><Image style={styles.image} source={{ uri: imageURI }} /></TouchableOpacity></View>);
       });
     }
-    console.log(slides);
+    // console.log(slides);
     return (
       <Swiper style={styles.wrapper} showsButtons={true}>
         {slides}
@@ -91,7 +91,7 @@ var styles = StyleSheet.create({
     flex: 1,
     minHeight: 200,
     minWidth: 400,
-    marginBottom: 15
+    marginBottom: 10
   },
   image:{
     flex: 1,
